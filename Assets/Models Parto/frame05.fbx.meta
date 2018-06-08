@@ -1,0 +1,385 @@
+fileFormatVersion: 2
+guid: 33ad54b7fc89e2e4d97d865fbc372b9c
+timeCreated: 1443124418
+licenseType: Free
+ModelImporter:
+  serializedVersion: 22
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: ShapeIndexedFaceSet
+    100004: ShapeIndexedFaceSet.001
+    100006: ShapeIndexedFaceSet.002
+    100008: ShapeIndexedFaceSet.003
+    100010: ShapeIndexedFaceSet.004
+    100012: ShapeIndexedFaceSet.005
+    100014: ShapeIndexedFaceSet.006
+    100016: ShapeIndexedFaceSet.007
+    100018: ShapeIndexedFaceSet.008
+    100020: ShapeIndexedFaceSet.009
+    100022: ShapeIndexedFaceSet.010
+    100024: ShapeIndexedFaceSet.011
+    100026: ShapeIndexedFaceSet.012
+    100028: ShapeIndexedFaceSet.013
+    100030: ShapeIndexedFaceSet.014
+    100032: ShapeIndexedFaceSet.015
+    100034: ShapeIndexedFaceSet.016
+    100036: ShapeIndexedFaceSet.017
+    100038: ShapeIndexedFaceSet.018
+    100040: ShapeIndexedFaceSet.019
+    100042: ShapeIndexedFaceSet.020
+    100044: ShapeIndexedFaceSet.021
+    100046: ShapeIndexedFaceSet.022
+    100048: ShapeIndexedFaceSet.023
+    100050: ShapeIndexedFaceSet.024
+    100052: ShapeIndexedFaceSet.025
+    100054: ShapeIndexedFaceSet.026
+    100056: ShapeIndexedLineSet
+    100058: ShapeIndexedLineSet.001
+    100060: Viewpoint
+    100062: Viewpoint.001
+    100064: Viewpoint.002
+    100066: Viewpoint.003
+    100068: Viewpoint.004
+    100070: Viewpoint.005
+    100072: Viewpoint.006
+    400000: //RootNode
+    400002: ShapeIndexedFaceSet
+    400004: ShapeIndexedFaceSet.001
+    400006: ShapeIndexedFaceSet.002
+    400008: ShapeIndexedFaceSet.003
+    400010: ShapeIndexedFaceSet.004
+    400012: ShapeIndexedFaceSet.005
+    400014: ShapeIndexedFaceSet.006
+    400016: ShapeIndexedFaceSet.007
+    400018: ShapeIndexedFaceSet.008
+    400020: ShapeIndexedFaceSet.009
+    400022: ShapeIndexedFaceSet.010
+    400024: ShapeIndexedFaceSet.011
+    400026: ShapeIndexedFaceSet.012
+    400028: ShapeIndexedFaceSet.013
+    400030: ShapeIndexedFaceSet.014
+    400032: ShapeIndexedFaceSet.015
+    400034: ShapeIndexedFaceSet.016
+    400036: ShapeIndexedFaceSet.017
+    400038: ShapeIndexedFaceSet.018
+    400040: ShapeIndexedFaceSet.019
+    400042: ShapeIndexedFaceSet.020
+    400044: ShapeIndexedFaceSet.021
+    400046: ShapeIndexedFaceSet.022
+    400048: ShapeIndexedFaceSet.023
+    400050: ShapeIndexedFaceSet.024
+    400052: ShapeIndexedFaceSet.025
+    400054: ShapeIndexedFaceSet.026
+    400056: ShapeIndexedLineSet
+    400058: ShapeIndexedLineSet.001
+    400060: Viewpoint
+    400062: Viewpoint.001
+    400064: Viewpoint.002
+    400066: Viewpoint.003
+    400068: Viewpoint.004
+    400070: Viewpoint.005
+    400072: Viewpoint.006
+    2300000: ShapeIndexedFaceSet
+    2300002: ShapeIndexedFaceSet.001
+    2300004: ShapeIndexedFaceSet.002
+    2300006: ShapeIndexedFaceSet.003
+    2300008: ShapeIndexedFaceSet.004
+    2300010: ShapeIndexedFaceSet.005
+    2300012: ShapeIndexedFaceSet.006
+    2300014: ShapeIndexedFaceSet.007
+    2300016: ShapeIndexedFaceSet.008
+    2300018: ShapeIndexedFaceSet.009
+    2300020: ShapeIndexedFaceSet.010
+    2300022: ShapeIndexedFaceSet.011
+    2300024: ShapeIndexedFaceSet.012
+    2300026: ShapeIndexedFaceSet.013
+    2300028: ShapeIndexedFaceSet.014
+    2300030: ShapeIndexedFaceSet.015
+    2300032: ShapeIndexedFaceSet.016
+    2300034: ShapeIndexedFaceSet.017
+    2300036: ShapeIndexedFaceSet.018
+    2300038: ShapeIndexedFaceSet.019
+    2300040: ShapeIndexedFaceSet.020
+    2300042: ShapeIndexedFaceSet.021
+    2300044: ShapeIndexedFaceSet.022
+    2300046: ShapeIndexedFaceSet.023
+    2300048: ShapeIndexedFaceSet.024
+    2300050: ShapeIndexedFaceSet.025
+    2300052: ShapeIndexedFaceSet.026
+    2300054: ShapeIndexedLineSet
+    2300056: ShapeIndexedLineSet.001
+    3300000: ShapeIndexedFaceSet
+    3300002: ShapeIndexedFaceSet.001
+    3300004: ShapeIndexedFaceSet.002
+    3300006: ShapeIndexedFaceSet.003
+    3300008: ShapeIndexedFaceSet.004
+    3300010: ShapeIndexedFaceSet.005
+    3300012: ShapeIndexedFaceSet.006
+    3300014: ShapeIndexedFaceSet.007
+    3300016: ShapeIndexedFaceSet.008
+    3300018: ShapeIndexedFaceSet.009
+    3300020: ShapeIndexedFaceSet.010
+    3300022: ShapeIndexedFaceSet.011
+    3300024: ShapeIndexedFaceSet.012
+    3300026: ShapeIndexedFaceSet.013
+    3300028: ShapeIndexedFaceSet.014
+    3300030: ShapeIndexedFaceSet.015
+    3300032: ShapeIndexedFaceSet.016
+    3300034: ShapeIndexedFaceSet.017
+    3300036: ShapeIndexedFaceSet.018
+    3300038: ShapeIndexedFaceSet.019
+    3300040: ShapeIndexedFaceSet.020
+    3300042: ShapeIndexedFaceSet.021
+    3300044: ShapeIndexedFaceSet.022
+    3300046: ShapeIndexedFaceSet.023
+    3300048: ShapeIndexedFaceSet.024
+    3300050: ShapeIndexedFaceSet.025
+    3300052: ShapeIndexedFaceSet.026
+    3300054: ShapeIndexedLineSet
+    3300056: ShapeIndexedLineSet.001
+    4300000: ShapeIndexedLineSet.001
+    4300002: ShapeIndexedFaceSet.026
+    4300004: ShapeIndexedFaceSet.025
+    4300006: ShapeIndexedFaceSet.024
+    4300008: ShapeIndexedFaceSet.023
+    4300010: ShapeIndexedFaceSet.022
+    4300012: ShapeIndexedFaceSet.021_MeshPart0
+    4300014: ShapeIndexedFaceSet.020_MeshPart0
+    4300016: ShapeIndexedFaceSet.019_MeshPart0
+    4300018: ShapeIndexedFaceSet.018_MeshPart0
+    4300020: ShapeIndexedFaceSet.017_MeshPart0
+    4300022: ShapeIndexedFaceSet.016_MeshPart0
+    4300024: ShapeIndexedFaceSet.015_MeshPart0
+    4300026: ShapeIndexedFaceSet.014
+    4300028: ShapeIndexedFaceSet.013
+    4300030: ShapeIndexedFaceSet.012
+    4300032: ShapeIndexedFaceSet.011
+    4300034: ShapeIndexedFaceSet.010
+    4300036: ShapeIndexedFaceSet.009
+    4300038: ShapeIndexedFaceSet.008
+    4300040: ShapeIndexedFaceSet.007
+    4300042: ShapeIndexedFaceSet.006
+    4300044: ShapeIndexedFaceSet.005
+    4300046: ShapeIndexedFaceSet.004
+    4300048: ShapeIndexedFaceSet.003
+    4300050: ShapeIndexedFaceSet.002
+    4300052: ShapeIndexedFaceSet.001
+    4300054: ShapeIndexedLineSet
+    4300056: ShapeIndexedFaceSet
+    4300058: ShapeIndexedFaceSet.021
+    4300060: ShapeIndexedFaceSet.020
+    4300062: ShapeIndexedFaceSet.019
+    4300064: ShapeIndexedFaceSet.018
+    4300066: ShapeIndexedFaceSet.017
+    4300068: ShapeIndexedFaceSet.016
+    4300070: ShapeIndexedFaceSet.015
+  externalObjects:
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.116
+    second: {fileID: 2100000, guid: c0db7b2e24d93c64a947bc5e7518a16b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.117
+    second: {fileID: 2100000, guid: bb2f15a269d84a048ba409c5eda9de68, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.118
+    second: {fileID: 2100000, guid: d0f7e6222db856e4e88ef3ad7f687d7d, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.119
+    second: {fileID: 2100000, guid: 3ee49c8a771f74044abe5240ec154cbd, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.120
+    second: {fileID: 2100000, guid: 37bb9d2d3c06e234c8804dc9f2e77fec, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.121
+    second: {fileID: 2100000, guid: 4ee71ddbd61fb21468877c1371d000e6, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.122
+    second: {fileID: 2100000, guid: 7bece41f51c86ac4dbd45ff7c9e32ee0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.123
+    second: {fileID: 2100000, guid: 16799a249990a9447926bda36c55d6be, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.124
+    second: {fileID: 2100000, guid: 07e4c5f6b99731243b77d5b81cc394fc, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.125
+    second: {fileID: 2100000, guid: a3f0e3d4b5cc9384e9b7243063f0cd26, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.126
+    second: {fileID: 2100000, guid: bdb502d69b429fa469a274e0465bcfad, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.127
+    second: {fileID: 2100000, guid: 2cab52b56f8ef224aa04f128dc44bfcb, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.128
+    second: {fileID: 2100000, guid: fd54c82da85566f4b9b31b77953ca1f0, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.129
+    second: {fileID: 2100000, guid: 0f5d4d04064ce64439733209c17bc121, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.130
+    second: {fileID: 2100000, guid: cd6efc8deeecc1a4f843da18fc752333, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.131
+    second: {fileID: 2100000, guid: a787c6bf3e45da34685fd74b8adc26c4, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.132
+    second: {fileID: 2100000, guid: edcaa3d27bfeccb419c56954d2a2c57b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.133
+    second: {fileID: 2100000, guid: 33303758f1df9a740bbcc4b53198e604, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.134
+    second: {fileID: 2100000, guid: 6bc9c927ab1095c4e964e00f34e52301, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.135
+    second: {fileID: 2100000, guid: 4981bff2832c96c42a3267fb440be55b, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.136
+    second: {fileID: 2100000, guid: 5e0dea3af659b254683b5b0a0273ec58, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.137
+    second: {fileID: 2100000, guid: 59436240ae966a141a6d97a126819b00, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.138
+    second: {fileID: 2100000, guid: 16b645b54dab8c04aa0ea14c2c6db56f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.139
+    second: {fileID: 2100000, guid: 12ead91db5249184fa5195bb0c5d617f, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.140
+    second: {fileID: 2100000, guid: 8dfad60dbb0b255478a25fc574e93f9c, type: 2}
+  - first:
+      type: UnityEngine:Material
+      assembly: UnityEngine.CoreModule
+      name: Shape.141
+    second: {fileID: 2100000, guid: c0fbb77c8a95d9d4bbe616b42e68b5ba, type: 2}
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+    materialLocation: 0
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    rigImportErrors: 
+    rigImportWarnings: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    importAnimatedCustomProperties: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    extraUserProperties: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importVisibility: 0
+    importBlendShapes: 1
+    importCameras: 0
+    importLights: 0
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    preserveHierarchy: 0
+    indexFormat: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 4
+    normalCalculationMode: 0
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 0
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

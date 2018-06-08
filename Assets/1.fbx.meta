@@ -1,0 +1,202 @@
+fileFormatVersion: 2
+guid: 95d872be3757fb7429cb70c383ecc3d9
+timeCreated: 1487000232
+licenseType: Free
+ModelImporter:
+  serializedVersion: 19
+  fileIDToRecycleName:
+    100000: //RootNode
+    100002: Shape_IndexedFaceSet.025
+    100004: Shape_IndexedFaceSet.026
+    100006: Shape_IndexedFaceSet.027
+    100008: Shape_IndexedFaceSet.028
+    100010: Shape_IndexedFaceSet.029
+    100012: Shape_IndexedFaceSet.030
+    100014: Shape_IndexedFaceSet.031
+    100016: Shape_IndexedFaceSet.032
+    100018: Shape_IndexedFaceSet.033
+    100020: Shape_IndexedFaceSet.034
+    100022: Shape_IndexedFaceSet.035
+    100024: Shape_IndexedFaceSet.036
+    100026: Shape_IndexedFaceSet.037
+    100028: Shape_IndexedFaceSet.038
+    100030: Shape_IndexedFaceSet.039
+    100032: Shape_IndexedFaceSet.040
+    100034: Shape_IndexedFaceSet.041
+    100036: Shape_IndexedFaceSet.042
+    100038: Shape_IndexedFaceSet.043
+    100040: Shape_IndexedFaceSet.044
+    100042: Shape_IndexedFaceSet.045
+    100044: Shape_IndexedFaceSet.046
+    100046: Shape_IndexedFaceSet.047
+    100048: Shape_IndexedFaceSet.048
+    100050: Shape_IndexedFaceSet.049
+    400000: //RootNode
+    400002: Shape_IndexedFaceSet.025
+    400004: Shape_IndexedFaceSet.026
+    400006: Shape_IndexedFaceSet.027
+    400008: Shape_IndexedFaceSet.028
+    400010: Shape_IndexedFaceSet.029
+    400012: Shape_IndexedFaceSet.030
+    400014: Shape_IndexedFaceSet.031
+    400016: Shape_IndexedFaceSet.032
+    400018: Shape_IndexedFaceSet.033
+    400020: Shape_IndexedFaceSet.034
+    400022: Shape_IndexedFaceSet.035
+    400024: Shape_IndexedFaceSet.036
+    400026: Shape_IndexedFaceSet.037
+    400028: Shape_IndexedFaceSet.038
+    400030: Shape_IndexedFaceSet.039
+    400032: Shape_IndexedFaceSet.040
+    400034: Shape_IndexedFaceSet.041
+    400036: Shape_IndexedFaceSet.042
+    400038: Shape_IndexedFaceSet.043
+    400040: Shape_IndexedFaceSet.044
+    400042: Shape_IndexedFaceSet.045
+    400044: Shape_IndexedFaceSet.046
+    400046: Shape_IndexedFaceSet.047
+    400048: Shape_IndexedFaceSet.048
+    400050: Shape_IndexedFaceSet.049
+    2300000: Shape_IndexedFaceSet.025
+    2300002: Shape_IndexedFaceSet.026
+    2300004: Shape_IndexedFaceSet.027
+    2300006: Shape_IndexedFaceSet.028
+    2300008: Shape_IndexedFaceSet.029
+    2300010: Shape_IndexedFaceSet.030
+    2300012: Shape_IndexedFaceSet.031
+    2300014: Shape_IndexedFaceSet.032
+    2300016: Shape_IndexedFaceSet.033
+    2300018: Shape_IndexedFaceSet.034
+    2300020: Shape_IndexedFaceSet.035
+    2300022: Shape_IndexedFaceSet.036
+    2300024: Shape_IndexedFaceSet.037
+    2300026: Shape_IndexedFaceSet.038
+    2300028: Shape_IndexedFaceSet.039
+    2300030: Shape_IndexedFaceSet.040
+    2300032: Shape_IndexedFaceSet.041
+    2300034: Shape_IndexedFaceSet.042
+    2300036: Shape_IndexedFaceSet.043
+    2300038: Shape_IndexedFaceSet.044
+    2300040: Shape_IndexedFaceSet.045
+    2300042: Shape_IndexedFaceSet.046
+    2300044: Shape_IndexedFaceSet.047
+    2300046: Shape_IndexedFaceSet.048
+    2300048: Shape_IndexedFaceSet.049
+    3300000: Shape_IndexedFaceSet.025
+    3300002: Shape_IndexedFaceSet.026
+    3300004: Shape_IndexedFaceSet.027
+    3300006: Shape_IndexedFaceSet.028
+    3300008: Shape_IndexedFaceSet.029
+    3300010: Shape_IndexedFaceSet.030
+    3300012: Shape_IndexedFaceSet.031
+    3300014: Shape_IndexedFaceSet.032
+    3300016: Shape_IndexedFaceSet.033
+    3300018: Shape_IndexedFaceSet.034
+    3300020: Shape_IndexedFaceSet.035
+    3300022: Shape_IndexedFaceSet.036
+    3300024: Shape_IndexedFaceSet.037
+    3300026: Shape_IndexedFaceSet.038
+    3300028: Shape_IndexedFaceSet.039
+    3300030: Shape_IndexedFaceSet.040
+    3300032: Shape_IndexedFaceSet.041
+    3300034: Shape_IndexedFaceSet.042
+    3300036: Shape_IndexedFaceSet.043
+    3300038: Shape_IndexedFaceSet.044
+    3300040: Shape_IndexedFaceSet.045
+    3300042: Shape_IndexedFaceSet.046
+    3300044: Shape_IndexedFaceSet.047
+    3300046: Shape_IndexedFaceSet.048
+    3300048: Shape_IndexedFaceSet.049
+    4300000: Shape_IndexedFaceSet.049
+    4300002: Shape_IndexedFaceSet.048
+    4300004: Shape_IndexedFaceSet.047
+    4300006: Shape_IndexedFaceSet.046
+    4300008: Shape_IndexedFaceSet.045
+    4300010: Shape_IndexedFaceSet.044
+    4300012: Shape_IndexedFaceSet.043
+    4300014: Shape_IndexedFaceSet.042
+    4300016: Shape_IndexedFaceSet.041
+    4300018: Shape_IndexedFaceSet.040
+    4300020: Shape_IndexedFaceSet.039
+    4300022: Shape_IndexedFaceSet.038
+    4300024: Shape_IndexedFaceSet.037
+    4300026: Shape_IndexedFaceSet.036
+    4300028: Shape_IndexedFaceSet.035
+    4300030: Shape_IndexedFaceSet.034
+    4300032: Shape_IndexedFaceSet.033
+    4300034: Shape_IndexedFaceSet.032
+    4300036: Shape_IndexedFaceSet.031
+    4300038: Shape_IndexedFaceSet.030
+    4300040: Shape_IndexedFaceSet.029
+    4300042: Shape_IndexedFaceSet.028
+    4300044: Shape_IndexedFaceSet.027
+    4300046: Shape_IndexedFaceSet.026
+    4300048: Shape_IndexedFaceSet.025
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    resampleCurves: 1
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationImportErrors: 
+    animationImportWarnings: 
+    animationRetargetingWarnings: 
+    animationDoRetargetingWarnings: 0
+    animationCompression: 1
+    animationRotationError: 0.5
+    animationPositionError: 0.5
+    animationScaleError: 0.5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    normalImportMode: 0
+    tangentImportMode: 3
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    serializedVersion: 2
+    human: []
+    skeleton: []
+    armTwist: 0.5
+    foreArmTwist: 0.5
+    upperLegTwist: 0.5
+    legTwist: 0.5
+    armStretch: 0.05
+    legStretch: 0.05
+    feetSpacing: 0
+    rootMotionBoneName: 
+    rootMotionBoneRotation: {x: 0, y: 0, z: 0, w: 1}
+    hasTranslationDoF: 0
+    hasExtraRoot: 0
+    skeletonHasParents: 1
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 0
+  humanoidOversampling: 1
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
