@@ -105,19 +105,19 @@ public class ModelRotation : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.RightArrow) || (right == true && rRight.enabled == true))
         {
-            gameObject.transform.RotateAround(meshesCenter, Vector3.up, -rotationSpeed * Time.deltaTime);
+            gameObject.transform.Rotate(new Vector3(Time.deltaTime * -rotationSpeed, 0, 0));
         }
         else if (Input.GetKey(KeyCode.LeftArrow) || (left == true && rLeft.enabled == true))
         {
-            gameObject.transform.RotateAround(meshesCenter, Vector3.up, rotationSpeed * Time.deltaTime);
+            gameObject.transform.Rotate(new Vector3(Time.deltaTime * rotationSpeed, 0, 0));
         }
         else if (Input.GetKey(KeyCode.UpArrow) || (up == true && rUp.enabled == true))
         {
-            gameObject.transform.RotateAround(meshesCenter, Vector3.right, rotationSpeed * Time.deltaTime);
+            gameObject.transform.Rotate(new Vector3(0, Time.deltaTime * rotationSpeed, 0));
         }
         else if (Input.GetKey(KeyCode.DownArrow) || (down == true && rDown.enabled == true))
         {
-            gameObject.transform.RotateAround(meshesCenter, Vector3.right, -rotationSpeed * Time.deltaTime);
+            gameObject.transform.Rotate(new Vector3(0, Time.deltaTime * rotationSpeed, 0));
         }
     }
 
