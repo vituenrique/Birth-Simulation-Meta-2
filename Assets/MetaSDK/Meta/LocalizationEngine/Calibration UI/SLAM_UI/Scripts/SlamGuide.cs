@@ -233,9 +233,9 @@ namespace Meta.SlamUI
 
         private IEnumerator DetectSensorsReady()
         {
-            if (_localizer != null)
+            if (_localizer != null && _localizer.SlamFeedback != null)
             {
-                while (!(_localizer.SensorsReady()))
+                while (!(_localizer.SlamFeedback.CameraReady))
                 {
                     yield return null;
                 }
@@ -245,12 +245,13 @@ namespace Meta.SlamUI
 
         private bool DetectHoldStillStage()
         {
-            return _localizer.ShouldHoldStill();
+            SlamFeedback feedback = _localizer.SlamFeedback;
+            return feedback.TrackingReady && feedback.CameraReady && feedback.percent_initialized >= 100;
         }
 
         private bool DetectCalibratedStage()
         {
-            return _localizer.IsTracking();
+            return _localizer.SlamFeedback.FilterReady;
         }
 
         private bool ApproximatelyWithThreshold(float a, float b)

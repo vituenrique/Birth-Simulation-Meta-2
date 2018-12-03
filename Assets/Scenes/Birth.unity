@@ -1056,15 +1056,15 @@ Prefab:
     m_Modifications:
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -0.058
+      value: -0.042
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -0.378
+      value: -0.181
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.782
+      value: 0.594
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalRotation.x
@@ -1088,15 +1088,15 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.003000001
+      value: 0.001000001
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.003000002
+      value: 0.001000002
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.0030000024
+      value: 0.001000002
       objectReference: {fileID: 0}
     - target: {fileID: 100000, guid: 4a222d085d40ddd498acffbf13e6b823, type: 3}
       propertyPath: m_IsActive
@@ -1320,56 +1320,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 1087866138}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 83610283}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1761595322}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &83610283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1918,56 +1868,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 445022278}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 123884592}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1417261093}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &123884592
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2400,56 +2300,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 1254684834}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 172023612}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 48626369}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &172023612
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3112,56 +2962,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 130437984}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 221741654}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1059292795}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &221741654
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4483,7 +4283,7 @@ MonoBehaviour:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 365330378}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: a72ce8878b25bfa47aafebab81dee136, type: 3}
   m_Name: 
@@ -4542,6 +4342,138 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96cb1653b0e0d774fa62e61eebd89692, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &365330384
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365330378}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ca44db64baca3fb458a23a2f4c290324, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Interaction: {fileID: 0}
+  Materials:
+  - MaterialIndex: 2
+    Idle: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    Highlight: {r: 1, g: 1, b: 1, a: 1}
+    Active: {r: 1, g: 2, b: 3, a: 1}
+  - MaterialIndex: 4
+    Idle: {r: 0.5, g: 0.5, b: 0.5, a: 1}
+    Highlight: {r: 1, g: 1, b: 1, a: 1}
+    Active: {r: 1, g: 2, b: 3, a: 1}
+  - MaterialIndex: 6
+    Idle: {r: 0, g: 0, b: 0, a: 0}
+    Highlight: {r: 0, g: 0.55, b: 0.55, a: 1}
+    Active: {r: 1, g: 1, b: 1, a: 1}
+--- !u!114 &365330385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365330378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 802fb631bf3d414478d36e2d114aed2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTransform: {fileID: 0}
+  _events:
+    _engaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _disengaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverStart:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverEnd:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+  _minSize: {x: 0.3, y: 0.3}
+  _maxSize: {x: 2, y: 2}
+  _scaleSizeDelta: 0
+  _scaleChanged:
+    m_PersistentCalls:
+      m_Calls: []
+    m_TypeName: Meta.Vector3UnityEvent, Assembly-CSharp, Version=0.0.0.0, Culture=neutral,
+      PublicKeyToken=null
+--- !u!114 &365330386
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365330378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea67a886b13fbff4395b0caf9c5a041f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTransform: {fileID: 0}
+  _events:
+    _engaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _disengaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverStart:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverEnd:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+--- !u!114 &365330387
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 365330378}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 45bd94a85c17ec4418225806a214312f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _targetTransform: {fileID: 0}
+  _events:
+    _engaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _disengaged:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverStart:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
+    _hoverEnd:
+      m_PersistentCalls:
+        m_Calls: []
+      m_TypeName: Meta.MetaInteractionDataEvent, Assembly-CSharp, Version=0.0.0.0,
+        Culture=neutral, PublicKeyToken=null
 --- !u!1 &378425956
 GameObject:
   m_ObjectHideFlags: 0
@@ -4998,7 +4930,7 @@ GameObject:
   m_Component:
   - component: {fileID: 416910797}
   m_Layer: 0
-  m_Name: 0
+  m_Name: tensionScale
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5011,8 +4943,8 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 416910796}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -0.183, y: 0.017, z: -1.294}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalPosition: {x: -0.142, y: -0.023, z: -0.67}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 0.5}
   m_Children:
   - {fileID: 36508647}
   - {fileID: 1956033707}
@@ -5295,56 +5227,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 773828239}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 424988459}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 3516309}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &424988459
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6601,13 +6483,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6124de87eead3d43a9f23cd33163506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1212141277}
-  volume: 0
-  currentValue: -1
-  previousValue: -1
-  maxValue: 0
-  TimeLastSlid: 0
-  animationScript: {fileID: 401550991}
 --- !u!114 &600437738
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6709,68 +6584,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: Background Layer
-    LayerTransform: {fileID: 1442976786}
-    MaxFloatDistance: 0.005
-    MinFloatDistance: 0
-    Shadow: {fileID: 600437740}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Fill Area Layer
-    LayerTransform: {fileID: 1494097346}
-    MaxFloatDistance: 0.005
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Handle Slide Area Layer
-    LayerTransform: {fileID: 1795981809}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 1583709032}
-    ShadowOnAboveLayer: 1
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &600437740
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7198,56 +7011,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 589529041}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 642539568}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1689111261}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &642539568
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7403,21 +7166,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba64ee20feb1a73408eec5f580881823, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  LeapDataProvider: {fileID: 0}
-  RenderSphereDiameter: 0.1
-  CollisionSphereDiameter: 0.2
-  MotionScalingFactor: 1
-  CursorSmoothingFactor: 0.2
-  Spring: 500
-  Damper: 10.5
-  Drag: 10
-  AngularDrag: 0
-  Distance: 0
-  CurrentRotation: {x: 0, y: 0, z: 0, w: 0}
-  _sphereMesh: {fileID: 0}
-  _sphereMaterial: {fileID: 0}
-  Cursors: []
-  prevPinching: []
 --- !u!4 &655468624
 Transform:
   m_ObjectHideFlags: 0
@@ -8608,56 +8356,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 260638737}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 790023183}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 42468705}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &790023183
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -8984,18 +8682,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3cfda3419655f5f469f8ce436807a6ad, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  text: {fileID: 1340095015}
-  image: {fileID: 998053544}
-  OnColor:
-    r: 0.72156864
-    g: 0.72156864
-    b: 0.72156864
-    a: 1
-  OffColor:
-    r: 0.86666673
-    g: 0.86666673
-    b: 0.86666673
-    a: 1
 --- !u!114 &836966137
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9076,56 +8762,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ToggleBackdrop Layer
-    LayerTransform: {fileID: 998053543}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 836966139}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1340095014}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &836966139
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10313,7 +9949,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 162104, guid: 1418790eb1494774292421aebedcd6ce, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 1418790eb1494774292421aebedcd6ce, type: 2}
@@ -10558,13 +10194,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a6124de87eead3d43a9f23cd33163506, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  source: {fileID: 1544129623}
-  volume: 0
-  currentValue: -1
-  previousValue: -1
-  maxValue: 0
-  TimeLastSlid: 0
-  animationScript: {fileID: 401550991}
 --- !u!114 &944214275
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10666,68 +10295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: Background Layer
-    LayerTransform: {fileID: 1447235046}
-    MaxFloatDistance: 0.005
-    MinFloatDistance: 0
-    Shadow: {fileID: 944214277}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Fill Area Layer
-    LayerTransform: {fileID: 52755055}
-    MaxFloatDistance: 0.005
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Handle Slide Area Layer
-    LayerTransform: {fileID: 1926970631}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 2128744735}
-    ShadowOnAboveLayer: 1
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &944214277
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -12939,7 +12506,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 1052850778450636, guid: 7c3f45bc4a849714aac61c8e48ea1c59, type: 2}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 7c3f45bc4a849714aac61c8e48ea1c59, type: 2}
@@ -16485,56 +16052,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 1301052954}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 1527044086}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1359722439}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &1527044086
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -17069,8 +16586,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18c90a2199d9c742ae0f95fbd2fa06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slider: {fileID: 600437736}
-  Handle: {fileID: 1212141276}
 --- !u!114 &1583709032
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -21210,56 +20725,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 201462574}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 1923003042}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1597683690}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &1923003042
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22150,56 +21615,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e3e6328679392734ea8291f8dc868266, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Layers:
-  - Label: ButtonBackdrop Layer
-    LayerTransform: {fileID: 1891305337}
-    MaxFloatDistance: 0.01
-    MinFloatDistance: 0
-    Shadow: {fileID: 2001531910}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  - Label: Text Layer
-    LayerTransform: {fileID: 1413940718}
-    MaxFloatDistance: 0.015
-    MinFloatDistance: 0
-    Shadow: {fileID: 0}
-    ShadowOnAboveLayer: 0
-    TriggerLayerEvent: 0
-    MaxShadowOpacity: 0
-    CurrentFloatingDistance: 0
-    touchingFinger: 0
-    distanceToAboveLayer: 0
-    maxDistanceToAboveLayer: 0
-  ExpandSpeed: 0.2
-  ContractSpeed: 0.2
-  PushPaddingDistance: 0
-  LayerDepress:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerCollapse:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  LayerExpand:
-    m_PersistentCalls:
-      m_Calls: []
-    m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
-      Culture=neutral, PublicKeyToken=null
-    m_CallsDirty: 1
-  curLerpSpeed: 0.1
-  HoveringDistance: 0
-  currentlyFloating: 0
-  TimeLastHovered: 0
 --- !u!114 &2001531910
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -22390,31 +21805,31 @@ Prefab:
     m_Modifications:
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalPosition.x
-      value: -0.5538
+      value: -0.324
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalPosition.y
-      value: -0.41899335
+      value: -0.219
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalPosition.z
-      value: 0.8870494
+      value: 0.632
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalRotation.x
-      value: -0
+      value: 0.68109703
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalRotation.y
-      value: -0
+      value: 0.6810969
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalRotation.z
-      value: -0
+      value: -0.19001833
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalRotation.w
-      value: 1
+      value: 0.19001831
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_RootOrder
@@ -22422,11 +21837,11 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalScale.x
-      value: 0.050000027
+      value: 0.03000003
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalScale.y
-      value: 0.050000023
+      value: 0.03000002
       objectReference: {fileID: 0}
     - target: {fileID: 4391345258896180, guid: fec6f679a36d86343b90812f04ebba7e, type: 2}
       propertyPath: m_LocalScale.z
@@ -22880,8 +22295,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c18c90a2199d9c742ae0f95fbd2fa06c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slider: {fileID: 944214279}
-  Handle: {fileID: 1544129625}
 --- !u!114 &2128744735
 MonoBehaviour:
   m_ObjectHideFlags: 0

@@ -54,8 +54,8 @@ namespace Meta
 
         private InteractionState _state;
         private Rigidbody _rigidbody;
-        private RigidbodyConstraints _rigidbodyConstraintsPriorToInteraction;
-        private bool _wasKinematicPriorToInteraction;
+        private RigidbodyConstraints _initialConstraints;
+        private bool _initialIsKinematic;
         private bool _higherPriorityRunning;
 
         protected bool IsHoveredUpon;
@@ -108,6 +108,11 @@ namespace Meta
         protected virtual void Awake()
         {
             _rigidbody = GetComponent<Rigidbody>();
+            if (_rigidbody != null)
+            {
+                _initialConstraints = _rigidbody.constraints;
+                _initialIsKinematic = _rigidbody.isKinematic;
+            }
         }
 
         protected virtual void Update()
@@ -123,12 +128,15 @@ namespace Meta
         /// </summary>
         public void OnGrabEngaged(Hand grabbingHand)
         {
-            if (enabled)
+            if (enabled) 
             {
                 // -- Record grabbing hand
                 GrabbingHands.Add(grabbingHand.Palm);
 
-                CheckAndEngage(grabbingHand);
+                if (CanEngage(grabbingHand) && !HigherPriorityRunning)
+                {
+                    OnEngaged(grabbingHand);
+                }
             }
         }
 
@@ -140,12 +148,12 @@ namespace Meta
             if (enabled)
             {
                 // -- Ensure this hand is grabbing object in first place
-                if (!GrabbingHands.Contains(GrabbingHands.Find(hand => hand.Hand == releasingHand)))
-                {
-                    return;
-                }
+                if (!GrabbingHands.Contains(GrabbingHands.Find(hand => hand.Hand == releasingHand))) return;
 
-                CheckAndDisengage(releasingHand);
+                if (CanDisengage(releasingHand) || HigherPriorityRunning)
+                {
+                    OnDisengaged(releasingHand);
+                }
 
                 // -- Remove Grabbing Hand
                 GrabbingHands.Remove(GrabbingHands.Find(hand => hand.Hand == releasingHand));
@@ -166,8 +174,6 @@ namespace Meta
                 var wasHoveredUpon = IsHoveredUpon;
                 IsHoveredUpon = HoveringHands.Count != 0;
 
-                CheckAndEngage(hand);
-
                 // -- Invoke hover state event
                 if (!wasHoveredUpon && IsHoveredUpon && _events.HoverStart != null)
                 {
@@ -184,12 +190,7 @@ namespace Meta
             if (enabled)
             {
                 // -- Ensure this hand is grabbing object in first place
-                if (!HoveringHands.Contains(HoveringHands.Find(handCenter => handCenter.Hand == hand)))
-                {
-                    return;
-                }
-
-                CheckAndDisengage(hand);
+                if (!HoveringHands.Contains(HoveringHands.Find(handCenter => handCenter.Hand == hand))) return;
 
                 // -- Remove Hovering Hand
                 HoveringHands.Remove(hand.Palm);
@@ -215,22 +216,6 @@ namespace Meta
             {
                 Disengage();
                 Engage();
-            }
-        }
-
-        private void CheckAndEngage(Hand hand)
-        {
-            if (CanEngage(hand) && !HigherPriorityRunning)
-            {
-                OnEngaged(hand);
-            }
-        }
-
-        private void CheckAndDisengage(Hand hand)
-        {
-            if (CanDisengage(hand) || HigherPriorityRunning)
-            {
-                OnDisengaged(hand);
             }
         }
 
@@ -284,45 +269,54 @@ namespace Meta
         protected abstract void Manipulate();
 
         /// <summary>
-        /// Translate target transform.
+        /// Move attached Rigidbody if exists, otherwise will move transform.
         /// </summary>
         protected void Move(Vector3 position)
         {
-            TargetTransform.position = position + GrabOffset;
-        }
+            var targetPosition = position + GrabOffset;
 
-        /// <summary>
-        /// Rotate target transform.
-        /// </summary>
-        protected void Rotate(Quaternion rotation)
-        {
-            TargetTransform.rotation = rotation;
-        }
-
-        /// <summary>
-        /// Set the rigidbody to kinematic and clear its constraints so as not to interfere with interaction translation.
-        /// </summary>
-        protected void PrepareRigidbodyForInteraction()
-        {
-            if (_rigidbody != null)
+            if (_rigidbody == null)
             {
-                _wasKinematicPriorToInteraction = _rigidbody.isKinematic;
-                _rigidbodyConstraintsPriorToInteraction = _rigidbody.constraints;
-
-                _rigidbody.constraints = RigidbodyConstraints.None;
-                _rigidbody.isKinematic = true;
+                TargetTransform.position = targetPosition;
+            }
+            else
+            {
+                _rigidbody.position = targetPosition;
             }
         }
 
         /// <summary>
-        /// Restore the rigidbody's kinematic state and constraints as they were prior to the most recent interaction.
+        /// Rotate attached Rigidbody if exists, otherwise will move transform.
         /// </summary>
-        protected void RestoreRigidbodySettingsAfterInteraction()
+        protected void Rotate(Quaternion rotation)
+        {
+            if (_rigidbody == null)
+            {
+                TargetTransform.rotation = rotation;
+            }
+            else
+            {
+                _rigidbody.rotation = rotation;
+            }
+        }
+
+        /// <summary>
+        /// Toggles IsKinematic state if RigidBody is attached.
+        /// </summary>
+        protected void SetIsKinematic(bool state)
         {
             if (_rigidbody != null)
             {
-                _rigidbody.isKinematic = _wasKinematicPriorToInteraction;
-                _rigidbody.constraints = _rigidbodyConstraintsPriorToInteraction;
+                if (state)
+                {
+                    _rigidbody.constraints = RigidbodyConstraints.None;
+                    _rigidbody.isKinematic = true;
+                }
+                else
+                {
+                    _rigidbody.constraints = _initialConstraints;
+                    _rigidbody.isKinematic = _initialIsKinematic;
+                }
             }
         }
 

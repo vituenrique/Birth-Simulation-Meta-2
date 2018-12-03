@@ -64,7 +64,7 @@ namespace Meta.Reconstruction
                 return;
             }
 
-            if (_slamEventProvider.IsFinished && !_slamEventProvider.RotationOnlyTrackingEnabled)
+            if (_slamEventProvider.IsFinished)
             {
                 throw new Exception("SlamEventProvider was already initialized");
             }

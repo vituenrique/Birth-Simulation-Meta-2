@@ -33,9 +33,11 @@ using MetaCoreInterop = Meta.Interop.MetaCoreInterop;
 using MetaVariable = Meta.Interop.MetaCoreInterop.MetaVariable;
 using InitStatus = Meta.Interop.MetaCoreInterop.InitStatus;
 using FrameHands = types.fbs.FrameHands; // Flatbuffers
+using PoseType = types.fbs.PoseType;   // Flatbuffers
+using Resources = UnityEngine.Resources;
+using Texture2D = UnityEngine.Texture2D;
 using Debug = UnityEngine.Debug;
 using Transform = UnityEngine.Transform;
-using Matrix4x4 = UnityEngine.Matrix4x4;
 using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 using System;
@@ -46,6 +48,7 @@ namespace Meta.Plugin
 {
     public static class SystemApi
     {
+
         /// <summary>
         /// Initializes the system (sensors, algorithms, etc). Returns false on failure, true on success.
         /// </summary>
@@ -53,14 +56,22 @@ namespace Meta.Plugin
         /// <param name="json_config_file">boolean to specify if we are running in development environment or production
         // environment</param>
         /// <param name="initialize_web_server">Specify weather to initialize stats web server.</param>
-        public static bool Start()
+        public static bool Start(string json_config_file = "", bool is_development_environment = true, bool initialize_web_server = false)
         {
-            InitStatus result = MetaCoreInterop.meta_start();
-            if (result != InitStatus.SUCCESS)
+            // -- Initialize library
+            InitStatus result = MetaCoreInterop.meta_init(json_config_file, is_development_environment);
+            if (result != InitStatus.NO_ERROR)
             {
-                Debug.LogError("Meta initialization failed with result: " + result);
+                // Debug.LogError("Meta initialization result: " + result);
                 return false;
             }
+
+            // -- Start MetaCore
+            MetaCoreInterop.meta_start(initialize_web_server);
+
+            // Note: Disabled; see MET-1833.
+            // MetaCoreInterop.meta_wait_start_complete();
+
             return true;
         }
 
@@ -110,39 +121,18 @@ namespace Meta.Plugin
         }
 
 
-        public static bool GetTransform(MetaCoreInterop.MetaCoordinateFrame destination, MetaCoreInterop.MetaCoordinateFrame source, ref Matrix4x4 matrix)
+        public static bool GetPose(string source, string target, ref byte[] buffer, out PoseType poseType)
         {
-            MetaCoreInterop.MetaMatrix44 mat = new MetaCoreInterop.MetaMatrix44();
-            if (!MetaCoreInterop.meta_get_transform(destination, source, ref mat))
+            if (MetaCoreInterop.meta_get_pose(source, target, buffer))
             {
+                poseType = new PoseType();
+
                 return false;
             }
 
-            matrix[0, 0] = mat.m00;
-			matrix[0, 1] = mat.m01;
-			matrix[0, 2] = mat.m02;
-			matrix[0, 3] = mat.m03;
+            var byteBuffer = new FlatBuffers.ByteBuffer(buffer);
 
-			matrix[1, 0] = mat.m10;
-			matrix[1, 1] = mat.m11;
-			matrix[1, 2] = mat.m12;
-			matrix[1, 3] = mat.m13;
-
-			matrix[2, 0] = mat.m20;
-			matrix[2, 1] = mat.m21;
-			matrix[2, 2] = mat.m22;
-			matrix[2, 3] = mat.m23;
-
-			matrix[3, 0] = mat.m30;
-			matrix[3, 1] = mat.m31;
-			matrix[3, 2] = mat.m32;
-			matrix[3, 3] = mat.m33;
-
-            // conver from right to left handed coordinate system
-            Matrix4x4 m_right_to_left = Matrix4x4.identity;
-            m_right_to_left[1, 1] *= -1;
-            matrix = m_right_to_left * matrix * m_right_to_left.inverse;
-
+            poseType = PoseType.GetRootAsPoseType(byteBuffer);
             return true;
         }
 

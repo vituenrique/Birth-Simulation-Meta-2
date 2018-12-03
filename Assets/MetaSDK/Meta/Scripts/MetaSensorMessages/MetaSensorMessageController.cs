@@ -48,9 +48,7 @@ namespace Meta
         private Image _backgroundImage;
 
         [SerializeField]
-        private CanvasGroup _animatedFeedback;
-
-        private bool _animatedFeedbackShown = false;
+        private Text _animatedFeedbackText;
 
         /// <summary>
         /// Changes the message displayed
@@ -65,26 +63,19 @@ namespace Meta
 
         private void MoveFeedbackAnimation() 
         {
-            if (_messageText)
-            {
-                float yOffset = _messageText.preferredHeight + 150.0f;
-                _animatedFeedback.transform.localPosition = _messageText.rectTransform.localPosition + Vector3.down * yOffset;
-            }
+            float yOffset = _messageText.preferredHeight;
+            _animatedFeedbackText.rectTransform.localPosition = _messageText.rectTransform.localPosition + Vector3.down * yOffset;
         }
 
         private void Start()
         {
             base.AutoConfigure();
 
-            if (!_messageText || !_backgroundImage || !_headingText || !_animatedFeedback)
+            if (!_messageText || !_backgroundImage || !_headingText || !_animatedFeedbackText)
             {
                 Debug.LogError(GetType() + " is not configured correctly.");
             }
-
-            if (!_animatedFeedbackShown)
-            {
-                _animatedFeedback.alpha = 0f;
-            }
+            _animatedFeedbackText.text = string.Empty;
         }
 
         /// <summary>
@@ -96,6 +87,7 @@ namespace Meta
             _backgroundImage.CrossFadeAlpha(targetAlpha, seconds, true);
             _messageText.CrossFadeAlpha(targetAlpha, seconds, true);
             _headingText.CrossFadeAlpha(targetAlpha, seconds, true);
+            _animatedFeedbackText.CrossFadeAlpha(targetAlpha, seconds, true);
         }
 
         public void SetTitleVisibility(bool isVisible)
@@ -105,14 +97,29 @@ namespace Meta
 
         public void StartLoadingFeedbackAnimation()
         {
-            _animatedFeedback.alpha = 1f;
-            _animatedFeedbackShown = true;
+            _animatedFeedbackText.StartCoroutine(LoadingAnimation());
         }
 
         public void StopLoadingFeedbackAnimation()
         {
-            _animatedFeedback.alpha = 0f;
-            _animatedFeedbackShown = false;
+            _animatedFeedbackText.StopCoroutine(LoadingAnimation());
+            _animatedFeedbackText.text = string.Empty;
+        }
+
+        private IEnumerator LoadingAnimation()
+        {
+            int numberOfDots = 0;
+            const int MaxNumberOfDots = 3;
+            const float animationWaitTimeSeconds = 0.8f;
+
+            while (true)
+            {
+                numberOfDots = ((numberOfDots+1) & MaxNumberOfDots);
+                string animatedMessage = new string('.', numberOfDots);
+                _animatedFeedbackText.text = animatedMessage;
+                yield return new WaitForSeconds(animationWaitTimeSeconds);
+            }
+
         }
 
     }

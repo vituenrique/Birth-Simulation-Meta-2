@@ -39,10 +39,6 @@ namespace Meta.HandInput
     /// </summary>
     public class HandTrigger : MonoBehaviour
     {
-        [Tooltip("Should hand trigger events still fire when this component is disabled?")]
-        [SerializeField]
-        private bool _triggerWhenDisabled = false;
-
         [SerializeField]
         private HandTriggerEvent _twoHandEnterEvent = new HandTriggerEvent();
 
@@ -73,11 +69,20 @@ namespace Meta.HandInput
         [SerializeField]
         private Vector3 _expandOnEntry = new Vector3(1.1f, 1.1f, 1.1f);
 
-        private readonly List<HandFeature> _handFeatureList = new List<HandFeature>();
+        [SerializeField]
+        private bool _showCursor = true;
 
+        [SerializeField]
+        private bool _showCursorTwoHands = true;
+
+        private readonly List<HandFeature> _handFeatureList = new List<HandFeature>();
         private bool _twoHandsEntered;
         private Vector3 _initialScale;
-        private Collider _collider;
+
+        public bool ShowCursor
+        {
+            get { return _showCursor || (HandCount == 2 && _showCursorTwoHands); }
+        }
 
         /// <summary>
         /// Number of unique HandTypes (left, right) in Trigger.
@@ -169,12 +174,8 @@ namespace Meta.HandInput
 
         private void Awake()
         {
-            _collider = GetComponent<Collider>();
-            SetColliderIsTrigger();
-
+            HandUtil.SetupCollider(gameObject);
             _initialScale = transform.localScale;
-
-            AddSceneExitCheck();
         }
         
         private void Update()
@@ -191,14 +192,9 @@ namespace Meta.HandInput
         
         private void OnTriggerEnter(Collider collider)
         {
-            if (!_triggerWhenDisabled && !enabled)
-            {
-                return;
-            }
-
             HandFeature handFeature = collider.GetComponent<HandFeature>();
 
-            if (handFeature != null && IsAllowedType(handFeature) && handFeature.gameObject.activeSelf)
+            if (handFeature != null && IsAllowedType(handFeature))
             {
                 if (_firstHandFeatureEnterEvent != null && _handFeatureList.Count == 0)
                 {
@@ -225,42 +221,11 @@ namespace Meta.HandInput
 
         private void OnTriggerExit(Collider collider)
         {
-            if (!_triggerWhenDisabled && !enabled)
-            {
-                return;
-            }
-
             HandFeature handFeature = collider.GetComponent<HandFeature>();
 
             if (handFeature != null && IsAllowedType(handFeature))
             {
                 OnHandExit(handFeature);
-            }
-        }
-
-        private void AddSceneExitCheck()
-        {
-            HandsProvider handsProvider = GameObject.Find("MetaHands").GetComponent<HandsProvider>();
-            if (handsProvider != null)
-            {
-                handsProvider.events.OnHandExit.AddListener(OnHandSensorExit);
-            }
-        }
-
-        private void OnHandSensorExit(Hand h)
-        {
-            if (!_triggerWhenDisabled && !enabled)
-            {
-                return;
-            }
-
-            HandFeature[] childHandFeatures = h.gameObject.GetComponentsInChildren<HandFeature>();
-            for (int i = 0; i < childHandFeatures.Length; i++)
-            {
-                if (IsAllowedType(childHandFeatures[i]))
-                {
-                    OnHandExit(childHandFeatures[i]);
-                }
             }
         }
 
@@ -284,14 +249,12 @@ namespace Meta.HandInput
 
         private void OnHandExit(HandFeature handFeature)
         {
-            bool wasInTrigger = false;
-
             if (handFeature != null)
             {
-                wasInTrigger = _handFeatureList.Remove(handFeature);
+                _handFeatureList.Remove(handFeature);
             }
 
-            if (_lastHandFeatureExitEvent != null && HandCount == 0 && wasInTrigger)
+            if (_lastHandFeatureExitEvent != null && HandCount == 0)
             {
                 transform.localScale = _initialScale;
                 _lastHandFeatureExitEvent.Invoke(handFeature);
@@ -330,16 +293,10 @@ namespace Meta.HandInput
 
         private void OnDrawGizmos()
         {
-            // Enforce proper setup in editor
-            SetColliderIsTrigger();
+            //Enforce proper setup in editor
+            HandUtil.SetupCollider(gameObject);
         }
 
-        private void SetColliderIsTrigger()
-        {
-            if (_collider != null && !_collider.isTrigger)
-            {
-                _collider.isTrigger = true;
-            }
-        }
+
     }
 }

@@ -79,7 +79,7 @@ namespace Meta.Mouse
 
         public bool EnableOnStart
         {
-            get { return _enableOnStart; }
+            get { return _enableOnStart || !Application.isEditor; }
         }
     }
 }

@@ -35,6 +35,8 @@ using Newtonsoft.Json.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
+using WebcamInterop = Meta.Interop.WebcamInterop;
+
 namespace Meta
 {
     /// <summary>
@@ -62,6 +64,7 @@ namespace Meta
 
 #if !NET_2_0_SUBSET
 
+        private bool? _webcamEnabled = null;
         private IMetaAnalytics _metaAnalytics;
 
         public MetaSdkAnalytics()
@@ -75,6 +78,7 @@ namespace Meta
 #if !NET_2_0_SUBSET
             eventHandlers.SubscribeOnAwake(SceneStartAnalytics);
             eventHandlers.SubscribeOnApplicationQuit(SceneStopAnalytics);
+            eventHandlers.SubscribeOnUpdate(OnUpdate);
             eventHandlers.SubscribeOnStart(InitSlamLocalizerAnalytics);
 
 #endif
@@ -111,7 +115,7 @@ namespace Meta
             if (slamLocalizer)
             {
                 RecordSlamSuccessRate(success);
-                _slamImuStartedOk = slamLocalizer.IsTracking();
+                _slamImuStartedOk = slamLocalizer.SlamFeedback.HasFirstImu;
 
                 if (slamLocalizer.SlamInitializedFromLoadedMap && !_slamRelocalizationChanceSpent)
                 {
@@ -142,6 +146,30 @@ namespace Meta
 
 
 #if !NET_2_0_SUBSET
+        private void OnUpdate()
+        {
+            //Prevents generating analytics when the scene is started
+            if (_webcamEnabled == null)
+            {
+                _webcamEnabled = WebcamInterop.IsWebcamOn();
+                return;
+            }
+
+            WebcamToggleAnalytics();
+        }
+
+        private void WebcamToggleAnalytics()
+        {
+            bool webcamEnabled = WebcamInterop.IsWebcamOn();
+            if (webcamEnabled != _webcamEnabled)
+            {
+                _webcamEnabled = webcamEnabled;
+                JObject o = new JObject();
+                o["webcam_enabled"] = webcamEnabled;
+
+                SendAsyncAnalytics("unity_webcamToggle", o);
+            }
+        }
 
         private void SceneStartAnalytics()
         {

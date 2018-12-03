@@ -59,13 +59,8 @@ namespace Meta
         [SerializeField]
         private Vector3UnityEvent _scaleChanged = new Vector3UnityEvent();
 
-        [Tooltip("Make objects scale exponentially using a gamma scale power rather than linearly")]
-        [SerializeField]
-        private bool _exponentialScaling = false;
-
         private float _priorDistance;
         private RectTransform _rectTransform;
-        private const float _gammaScalePower = 1.4f;
 
         /// <summary>
         /// Minimum scale
@@ -94,13 +89,13 @@ namespace Meta
         {
             _priorDistance = Vector3.Distance(FirstGrabbingHand.transform.position,
                                               SecondGrabbingHand.transform.position);
-            PrepareRigidbodyForInteraction();
+            SetIsKinematic(true);
             base.Engage();
         }
 
         protected override void Disengage()
         {
-            RestoreRigidbodySettingsAfterInteraction();
+            SetIsKinematic(false);
             base.Disengage();
         }
 
@@ -113,11 +108,6 @@ namespace Meta
                                                      SecondGrabbingHand.transform.position);
             float multiplier = currentDistance / _priorDistance;
             multiplier = Mathf.Clamp(multiplier, .5f, 1.5f);
-            if (_exponentialScaling)
-            {
-                multiplier = Mathf.Pow(multiplier, _gammaScalePower);
-            }
-
 
             RectTransform rectTransform = TargetTransform as RectTransform;
             if (rectTransform != null && _scaleSizeDelta)

@@ -50,11 +50,12 @@ namespace Meta
         {
             _handFeature = GrabbingHands[0];
 
-            PrepareRigidbodyForInteraction();
+            //rigidbody should be kinematic as to not interfere with grab translation
+            SetIsKinematic(true);
 
             // Store the offset of the object local to the hand feature.  This will be used to keep the object at the same distance from the hand when being moved.
-            
-            SetHandOffsets();
+            _localOffset = _handFeature.transform.InverseTransformDirection(TargetTransform.position - _handFeature.Position);
+            SetGrabOffset(TransformedHandPos());
         }
 
         protected override bool CanDisengage(Hand handProxy)
@@ -66,7 +67,7 @@ namespace Meta
                     if (hand != _handFeature)
                     {
                         _handFeature = hand;
-                        SetHandOffsets();
+                        SetGrabOffset(TransformedHandPos());
                         return false;
                     }
                 }
@@ -77,8 +78,7 @@ namespace Meta
 
         protected override void Disengage()
         {
-            Manipulate();
-            RestoreRigidbodySettingsAfterInteraction();
+            SetIsKinematic(false);
             _handFeature = null;
         }
 
@@ -91,14 +91,8 @@ namespace Meta
         {
             // This complements obtaining the offset - used to convert back to world space.
             Vector3 offset = _handFeature.transform.TransformDirection(_localOffset);
-            Vector3 grabPosition = _handFeature.transform.position + offset;
+            Vector3 grabPosition = _handFeature.Position + offset;
             return grabPosition;
-        }
-
-        private void SetHandOffsets()
-        {
-            _localOffset = _handFeature.transform.InverseTransformDirection(TargetTransform.position - _handFeature.Position);
-            SetGrabOffset(TransformedHandPos());
         }
     }
 }

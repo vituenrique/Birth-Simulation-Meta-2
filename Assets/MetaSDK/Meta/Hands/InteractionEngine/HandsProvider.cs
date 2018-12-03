@@ -29,8 +29,11 @@
 // SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using Meta.HandInput;
 using UnityEngine;
+using UnityEngine.Assertions;
+#pragma warning disable 0414
 
 namespace Meta
 {
@@ -40,12 +43,25 @@ namespace Meta
     /// </summary>
     public class HandsProvider : MetaBehaviour
     {
+        #region Member variables
+
+        private const string RightHandPath = "Prefabs/HandTemplate (Right)";
+        private const string LeftHandPath = "Prefabs/HandTemplate (Left)";
+
+        [Readonly]
         [SerializeField]
-        private Hand _rightHand = null, _leftHand = null;
+        private GameObject _rightTemplate;
+
+        [Readonly]
+        [SerializeField]
+        private GameObject _leftTemplate;
+
         [SerializeField]
         private Settings _settings = new Settings();
         [SerializeField]
         private Events _events = new Events();
+        [SerializeField]
+        private Stats _statistics = new Stats();
 
         private readonly List<Hand> _activeHands = new List<Hand>();
 
@@ -67,6 +83,17 @@ namespace Meta
         }
 
         /// <summary>
+        /// Class containing all settings for the hand.
+        /// </summary>
+        public Stats Statistics
+        {
+            get
+            {
+                return _statistics;
+            }
+        }
+
+        /// <summary>
         /// List of the current active hands.
         /// </summary>
         internal List<Hand> ActiveHands
@@ -74,9 +101,69 @@ namespace Meta
             get { return _activeHands; }
         }
 
+        #endregion Member variables
+
+        #region Monobehaviour methods
+
+        private void Awake()
+        {
+            InitializeTemplateHands();
+        }
+
         private void Start()
         {
-            HandsModule handManager = FindObjectOfType<BaseMetaContextBridge>().CurrentContext.Get<HandsModule>();
+            Initialize();
+        }
+
+        private void Reset()
+        {
+            InitializeTemplateHands();
+        }
+
+        [RuntimeInitializeOnLoadMethod]
+        private void OnValidate()
+        {
+            InitializeTemplateHands();
+        }
+
+        #endregion Monobehaviour methods
+
+        #region Member methods
+
+        private void InitializeTemplateHands()
+        {
+            if (_rightTemplate == null)
+            {
+                var rightTemplate = Resources.Load<GameObject>(RightHandPath);
+                if (rightTemplate == null)
+                {
+                    UnityEngine.Debug.LogWarning(RightHandPath);
+                }
+                else
+                {
+                    _rightTemplate = rightTemplate;
+                }
+            }
+
+
+            if (_leftTemplate == null)
+            {
+                var leftTemplate = Resources.Load<GameObject>(LeftHandPath);
+                if (leftTemplate == null)
+                {
+                    UnityEngine.Debug.LogWarning("No HandTemplate (Left).");
+                }
+                else
+                {
+                    _leftTemplate = leftTemplate;
+                }
+
+            }
+        }
+
+        private void Initialize()
+        {
+            HandsModule handManager = GameObject.FindObjectOfType<MetaContextBridge>().CurrentContext.Get<HandsModule>();
 
             handManager.OnHandEnterFrame += OnHandDataAppear;
             handManager.OnHandExitFrame += OnHandDataDisappear;
@@ -84,42 +171,71 @@ namespace Meta
 
         private void OnHandDataAppear(HandData handData)
         {
-            Hand hand = LookupHandForHandData(handData);
+            var handProxy = HandUtil.CreateNewHand(handData);
+            handProxy.transform.SetParent(transform);
+            _activeHands.Add(handProxy);
 
-            hand.InitializeHandData(handData);
-            hand.gameObject.SetActive(true);
-            hand.transform.SetParent(transform);
-
-            _activeHands.Add(hand);
-
-            events.OnHandEnter.Invoke(hand);
+            // -- Invoke on hand appear event
+            events.OnHandEnter.Invoke(handProxy);
         }
 
         private void OnHandDataDisappear(HandData handData)
         {
-            Hand hand = LookupHandForHandData(handData);
+            var handProxyForHandData = _activeHands.First(handProxy => handProxy.HandId == handData.UniqueId);
 
-            events.OnHandExit.Invoke(hand);
 
-            hand.MarkInvalid();
+            int nullPoxies = 0;
+            foreach (var activeHand in _activeHands)
+            {
+                if (activeHand == null)
+                {
+                    nullPoxies++;
+                }
+            }
+            if (nullPoxies > 0)
+            {
+                UnityEngine.Debug.Log("Null proxy count: " + nullPoxies);
+            }
 
-            _activeHands.Remove(hand);
 
-            hand.gameObject.SetActive(false);
+            if (handProxyForHandData == null)
+            {
+                Assert.IsTrue(handData != null);
+                throw new ArgumentNullException("Outgoing HandData does not exist in active Hand list");
+            }
+
+            // -- Invoke on hand disappear event
+            events.OnHandExit.Invoke(handProxyForHandData);
+
+            // -- Notify Hand & MotionHandFeatures
+            handProxyForHandData.MarkInvalid();
+
+            // -- Remove Hand from active Hand list
+            _activeHands.Remove(handProxyForHandData);
+
+            // -- Destroy Hand
+            Destroy(handProxyForHandData.gameObject);
         }
 
-        private Hand LookupHandForHandData(HandData handData)
+        /// <summary>
+        /// Not currently used. Should be used in case HandTemplate (Right) or HandTemplate (Left) Have been corupted / destroyed.
+        /// </summary>
+        private void BuildNewTemplates()
         {
-            switch (handData.HandType)
+            if (_rightTemplate == null)
             {
-                case HandType.Right:
-                    return _rightHand;
-                case HandType.Left:
-                    return _leftHand;
-                default:
-                    throw new Exception("Invalid hand type: " + handData.HandType);
+                HandUtil.InitializeTemplateHand(HandType.Right);
+            }
+
+            if (_leftTemplate == null)
+            {
+                HandUtil.InitializeTemplateHand(HandType.Left);
             }
         }
+
+        #endregion Member methods
+
+        #region Helper classes
 
         /// <summary>
         /// Class containing events related to the hand.
@@ -129,7 +245,7 @@ namespace Meta
         {
             /// <summary> Event fired on the first frame the hand is visible. </summary>
             public OnNewHandData OnHandEnter;
-            /// <summary> Event fired on the last frame the hand is visible, before the hand GameObject is made inactive. </summary>
+            /// <summary> Event fired on the last frame the hand is visible, before the hand GameObject is destoryed. </summary>
             public OnNewHandData OnHandExit;
 
 
@@ -170,10 +286,6 @@ namespace Meta
             [SerializeField]
             private int _handFeatureLayer;
 
-            [Tooltip("Turn on or off post processing of the hand trajectory.")]
-            [SerializeField]
-            private bool _enablePostProcessing = true;
-
             public float PalmRadiusNear
             {
                 get { return _palmRadiusNear; }
@@ -203,15 +315,40 @@ namespace Meta
             {
                 get { return _handFeatureLayer; }
             }
+        }
 
-            /// <summary>
-            /// Turn on or off post processing of the hand trajectory.
-            /// </summary>
-            public bool EnablePostProcessing
+
+        /// <summary>
+        /// Class containing statics for hands operations.
+        /// </summary>
+        [Serializable]
+        public class Stats
+        {
+            [Header("Read only")]
+
+            [Readonly]
+            [SerializeField]
+            private bool _initilized = false;
+
+            [Readonly]
+            [SerializeField]
+            private int _handsFrameID;
+            [Readonly]
+            [SerializeField]
+            private int _handsInScene;
+
+            public void MarkInitialized()
             {
-                get { return _enablePostProcessing; }
-                set { _enablePostProcessing = value; }
+                _initilized = true;
+            }
+
+            public void UpdateFrameData(int frameId, int handsInScene)
+            {
+                _handsFrameID = frameId;
+                _handsInScene = handsInScene;
             }
         }
+
+        #endregion Helper classes
     }
 }

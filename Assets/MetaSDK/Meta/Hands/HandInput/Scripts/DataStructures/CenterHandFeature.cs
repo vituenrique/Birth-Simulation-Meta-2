@@ -38,12 +38,9 @@ namespace Meta.HandInput
     {
         #region Member variables
 
-        private const float kGrabTemporalHysteresisThreshold = 0.5f;
-        private const float MIN_GRAB_TIME_THRESHOLD = 0.5f;
+        private const float kGrabTemporalHysteresisThreshold = 0.25f;
 
-        [Tooltip("Hand collider length in meters. Longer distances allow users to grab objects from further away.")]
-        [SerializeField]
-        private float _projectionDistance = 0.11f;
+        private EventCamera _eventCamera;
 
         /// <summary>
         /// Unity event for when a grab occurs.
@@ -57,9 +54,6 @@ namespace Meta.HandInput
         [SerializeField]
         private HandFeatureEvent _onDisengaged = new HandFeatureEvent();
 
-        private EventCamera _eventCamera;
-
-        private float _timeWhenGrabbed;
         private bool _isNearObject;
         private bool _wasGrabbing;
         private float _timeReleased;
@@ -73,14 +67,13 @@ namespace Meta.HandInput
 
         private const int ColliderBufferSize = 16;
         private readonly Collider[] _buffer = new Collider[ColliderBufferSize];
-
+ 
         /// <summary>
         /// A reference to the nearest gameobject for some state transitions in which the nearest GameObject
         /// is not known but had been previously known. 
         /// </summary>
         private GameObject _cachedNearestGameObject;
         private HandObjectReferences _handObjectReferences;
-        private IHandPostProcess _handPostProcess;
 
         #endregion
 
@@ -146,10 +139,6 @@ namespace Meta.HandInput
             }
         }
 
-        private IHandPostProcess HandPostProcess
-        {
-            get { return _handPostProcess ?? (_handPostProcess = GetComponent<IHandPostProcess>()); }
-        }
         #endregion
 
         #region MonoBehaviour Methods
@@ -158,7 +147,7 @@ namespace Meta.HandInput
         {
             // Check if HandCursor exist and if not, add it.
             var cursor = GetComponent<HandCursor>();
-            if (cursor == null)
+            if(cursor == null)
             {
                 gameObject.AddComponent<HandCursor>();
             }
@@ -178,29 +167,15 @@ namespace Meta.HandInput
             _palmState.Initialize();
         }
 
-        protected override void Start()
-        {
-            base.Start();
-
-            if (HandsSettings.settings.EnablePostProcessing)
-            {
-                _handPostProcess = GetComponent<IHandPostProcess>();
-            }
-        }
-
         protected override void Update()
         {
             base.Update();
 
             MaintainState();
 
-            if (HandsSettings.settings.EnablePostProcessing)
-            {
-                HandPostProcess.UpdateCandidatePosition();
-            }
-
             _wasGrabbing = Hand.IsGrabbing;
         }
+
         #endregion
 
         #region Member Methods
@@ -219,27 +194,17 @@ namespace Meta.HandInput
                 case PalmState.Hovering:
                     HoverEnd();
                     _handObjectReferences.AcceptStateTransitionForObject(_cachedNearestGameObject, PalmState.Hovering, PalmState.Idle);
-                    MoveStateMachine(PalmStateCommand.HoverLeave);
                     break;
                 case PalmState.Grabbing:
                     GrabEnd();
-                    MoveStateMachine(PalmStateCommand.Release);
                     HoverEnd();
-                    MoveStateMachine(PalmStateCommand.HoverLeave);
                     _handObjectReferences.AcceptStateTransitionForObject(_cachedNearestGameObject, PalmState.Grabbing, PalmState.Idle);
                     break;
                 default:
                     throw new ArgumentOutOfRangeException();
             }
-
-            _wasGrabbing = false;
-            _isNearObject = false;
-            _previousNearObjects.Clear();
-            _nearObjects.Clear();
-            _grabbedInteractionBehaviours.Clear();
-            _cachedNearestGameObject = null;
         }
-
+        
         private void MaintainState()
         {
             switch (_palmState.CurrentState)
@@ -249,7 +214,7 @@ namespace Meta.HandInput
                     // Find nearby objects
                     FindObjectsWithinVicinity(HandsSettings.settings.PalmRadiusNear);
 
-                    // Check if any are nearby
+                    // Check if any
                     _isNearObject = _nearObjects.Count > 0;
 
                     // Update pre-grab requirements
@@ -265,7 +230,8 @@ namespace Meta.HandInput
 
                     break;
                 case PalmState.Hovering:
-                    if (IsGrabbing())
+                    if (Hand.IsGrabbing && !_wasGrabbing
+                        && Mathf.Abs(Time.time - _timeReleased) > kGrabTemporalHysteresisThreshold)
                     {
                         MoveStateMachine(PalmStateCommand.Grab);
                         return;
@@ -276,8 +242,11 @@ namespace Meta.HandInput
                     // Find nearby objects
                     FindObjectsWithinVicinity(HandsSettings.settings.PalmRadiusFar);
 
-                    bool isPreviousNearObject = AnyNearbyObjectsNearbyLastFrame();
-
+                    var isPreviousNearObject = _previousNearObjects.Count > 0
+                                               &&
+                                               _nearObjects.Any(
+                                                   attachedInteraction =>
+                                                       _previousNearObjects.Contains(attachedInteraction));
                     if (!isPreviousNearObject)
                     {
                         foreach (var previousNearObject in _previousNearObjects)
@@ -297,7 +266,7 @@ namespace Meta.HandInput
                         }
                     }
 
-                    // Check if any are nearby
+                    // Check if any
                     _isNearObject = _nearObjects.Count > 0;
 
                     if (!_isNearObject)
@@ -316,33 +285,6 @@ namespace Meta.HandInput
                     throw new ArgumentOutOfRangeException();
             }
 
-        }
-
-        private bool IsGrabbing()
-        {
-            return Hand.IsGrabbing && (!_wasGrabbing || EnoughTimeLapsedSinceStartedGrabbing()) && HasEnoughTimeElapsed();
-        }
-
-        private bool EnoughTimeLapsedSinceStartedGrabbing()
-        {
-            return (Time.time - _timeWhenGrabbed) > MIN_GRAB_TIME_THRESHOLD;
-        }
-
-        private bool HasEnoughTimeElapsed()
-        {
-            float timeSinceLastRelease = Time.time - _timeReleased;
-
-            if (Mathf.Abs(timeSinceLastRelease) > kGrabTemporalHysteresisThreshold)
-            {
-                return true;
-            }
-
-            return false;
-        }
-
-        private bool AnyNearbyObjectsNearbyLastFrame()
-        {
-            return _nearObjects.Any(interaction => _previousNearObjects.Contains(interaction));
         }
 
         private void MoveStateMachine(PalmStateCommand command)
@@ -373,11 +315,6 @@ namespace Meta.HandInput
 
         private void GrabStart()
         {
-            if (HandsSettings.settings.EnablePostProcessing)
-            {
-                _handPostProcess.StartGrab();
-            }
-
             // Fire centralized grab event
             _handProvider.events.OnGrab.Invoke(Hand);
 
@@ -393,18 +330,10 @@ namespace Meta.HandInput
                 // Invoke OnGrab Event
                 interactionBehaviour.OnGrabEngaged(Hand);
             }
-
-            _timeWhenGrabbed = Time.time;
         }
 
         private void GrabEnd()
         {
-            if (HandsSettings.settings.EnablePostProcessing)
-            {
-                Hand.transform.position = HandPostProcess.CandidatePosition;
-                transform.position = HandPostProcess.CandidatePosition;
-            }
-
             // Fire centralized release event
             _handProvider.events.OnRelease.Invoke(Hand);
 
@@ -459,17 +388,21 @@ namespace Meta.HandInput
 
 
             var grabAnchor = HandData.GrabAnchor;
-            Vector3 projectionVector = grabAnchor + _projectionDistance * _eventCamera.transform.forward;
-            var nearColliderCount = Physics.OverlapCapsuleNonAlloc(grabAnchor, projectionVector, searchRadius, _buffer, layerMask, queryTriggers);
+            var nearColliderCount = Physics.OverlapSphereNonAlloc(grabAnchor, searchRadius, _buffer, layerMask, queryTriggers);
 
-            // TODO: refactor; repeated code in HandCursor.CheckHandInFrontOfInteractionObject()
             for (int i = 0; i < nearColliderCount; i++)
             {
                 var nearCollider = _buffer[i];
+                var parentInteraction = nearCollider.GetComponentInParent<Interaction>();
+                // ensure valid grabbed object.
+                if (parentInteraction == null)
+                {
+                    continue;
+                }
 
-                // Skip object if it does not have at least one active Interaction attached to it or an ancestor
-                Interaction[] attachedInteractions = nearCollider.GetComponentsInParent<Interaction>();
-                if (attachedInteractions.Length == 0 || attachedInteractions.All(attachedInteraction => !attachedInteraction.enabled))
+                var attachedInteractions = parentInteraction.GetComponents<Interaction>();
+                // Collect all attached interactions
+                if (attachedInteractions == null)
                 {
                     continue;
                 }

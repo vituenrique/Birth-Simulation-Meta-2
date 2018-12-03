@@ -35,7 +35,6 @@ using Meta.SlamUI;
 using Directory = System.IO.Directory;
 using Path      = System.IO.Path;
 using SlamApi   = Meta.Plugin.SlamApi;
-using SlamInterop   = Meta.Interop.SlamInterop;
 
 namespace Meta
 {
@@ -100,9 +99,15 @@ namespace Meta
         /// </summary>
         private SlamApi _slamInterop;
 
+        /// <summary>
+        /// Feedback from the Slam algorithm.
+        /// </summary>
+        public SlamFeedback SlamFeedback = null;
+        private SlamFeedback _lastSlamFeedback = new SlamFeedback();
+
         private SlamInitializationState _initializationState = SlamInitializationState.WaitingForInitialization;
-        private SlamInterop.TrackingStatus _status;
-        private SlamInterop.TrackingStatus _lastStatus;
+        private bool _enableJsonFeedback = true;
+        private Interop.SlamInterop.TrackingFeedback _feedbackStruct;
         private string _saveMapName;
         private string _loadMapName;
         private bool _loadMapAtInitRequested = false;
@@ -159,14 +164,6 @@ namespace Meta
             get { return _initializationState == SlamInitializationState.Finished; }
         }
 
-        /// <summary>
-        /// Is rotation only tracking enabled
-        /// </summary>
-        public bool RotationOnlyTrackingEnabled
-        {
-            get { return _rotationOnlyTracking; }
-        }
-
         private void Start()
         {
             _slamUiPrefab = (GameObject)Resources.Load(SlamUIPrefabName);
@@ -210,7 +207,7 @@ namespace Meta
         /// <param name="mapName">The slam map name.</param>
         public void LoadSlamMap(string mapName)
         {
-            if (!SensorsReady())
+            if (!SlamFeedback.CameraReady)
             {
                 _loadMapName = mapName;
                 _loadMapAtInitRequested = true;
@@ -268,8 +265,6 @@ namespace Meta
             _loadMapAtInitRequested = false;
             _slamInitializedFromLoadedMap = false;
             _loadMapName = "";
-            _status.state = SlamInterop.TrackingStatus.State.NOT_READY;
-            _lastStatus.state = SlamInterop.TrackingStatus.State.NOT_READY;
 
             SetState(SlamInitializationState.InitialMapping);
             StopInitialization();
@@ -291,21 +286,29 @@ namespace Meta
         /// </summary>
         public void UpdateLocalizer()
         {
+            bool slamIsReady = SlamFeedback.FilterReady && SlamFeedback.TrackingReady && (SlamFeedback.percent_initialized == 100);
+
             if (_slamInterop != null)
             {
                 _slamInterop.TargetGO = _targetGO;
-                _slamInterop.Update(_fromCompositor);
+                _slamInterop.Update(slamIsReady, _fromCompositor);
 
-                if (_loadMapAtInitRequested && SensorsReady() )
+                if (_loadMapAtInitRequested && SlamFeedback.CameraReady)
                 {
                     LoadSlamMap(_loadMapName);
                     _loadMapAtInitRequested = false;
                     _waitForSlamLoadingCoroutine = StartCoroutine(WaitForSlamLoading());
                 }
 
-                _slamInterop.GetTrackingStatus(out _status);
-                ProcessSlamFeedback(_status, _lastStatus);
-                _lastStatus = _status;
+                if (_enableJsonFeedback && SlamFeedback != null)
+                {
+                    _lastSlamFeedback.ParseStruct(_feedbackStruct);
+
+                    _slamInterop.GetSlamFeedback(out _feedbackStruct);
+                    SlamFeedback.ParseStruct(_feedbackStruct);
+
+                    ProcessSlamFeedback(SlamFeedback, _lastSlamFeedback);
+                }
 
                 if (_rotationOnlyTracking != _rotationOnlyTrackingPrevious)
                 {
@@ -341,14 +344,7 @@ namespace Meta
 
             _slamInterop = new SlamApi();
 
-            if (_rotationOnlyTracking)
-            {
-                SetState(SlamInitializationState.Finished);
-            }
-            else
-            {
-                _slamUICoroutine = StartCoroutine(ShowUI(SlamInitializationType.NewMap));
-            }
+            _slamUICoroutine = StartCoroutine(ShowUI(SlamInitializationType.NewMap));
         }
 
         private void StopInitialization()
@@ -382,7 +378,7 @@ namespace Meta
         {
             // Waiting for camera ready before initializing the timer.
             // Also waiting for UI, so the timer will start when the user knows what to do to relocalize.
-            yield return new WaitUntil(() => SensorsReady() && _showCalibrationUI);
+            yield return new WaitUntil(() => SlamFeedback.CameraReady && _showCalibrationUI);
 
             float time = 0;
             while (time < _loadingMapWaitTime)
@@ -422,57 +418,40 @@ namespace Meta
             }
         }
 
-        public bool SensorsReady()
+        private void ProcessSlamFeedback(SlamFeedback thisFrame, SlamFeedback previousFrame)
         {
-            return _status.state != SlamInterop.TrackingStatus.State.NOT_READY;
-        }
-
-        public bool ShouldHoldStill()
-        {
-            return _status.state == SlamInterop.TrackingStatus.State.INITIALIZING
-                && _status.reason == SlamInterop.TrackingStatus.Reason.IMU_INIT;
-        }
-
-        public bool IsTracking()
-        {
-            return _status.state == SlamInterop.TrackingStatus.State.TRACKING;
-        }
-
-        private void ProcessSlamFeedback(SlamInterop.TrackingStatus thisFrame, SlamInterop.TrackingStatus previousFrame)
-        {
-            if (thisFrame.state == SlamInterop.TrackingStatus.State.INITIALIZING
-                && previousFrame.state == SlamInterop.TrackingStatus.State.NOT_READY)
+            // slam mapping started: camera ready, tracking just got ready, scale quality = 0
+            // slam mapping in progress: camera ready, tracking ready, 0 < scale_quality < 100
+            // slam initial mapping complete: scale_quality_percent just got 100.
+            // slam mapping complete: Filter just got ready, tracking ready
+            // slam tracking lost: scale_qualiy = 100, !tracking ready
+            if (thisFrame.CameraReady && !previousFrame.CameraReady)
             {
                 onSlamSensorsReady.Invoke();
             }
 
-            if (thisFrame.state == SlamInterop.TrackingStatus.State.INITIALIZING
-                && thisFrame.reason == SlamInterop.TrackingStatus.Reason.ESTIMATING_SCALE
-                && previousFrame.state == SlamInterop.TrackingStatus.State.INITIALIZING
-                && previousFrame.reason == SlamInterop.TrackingStatus.Reason.VISUAL_INIT)
+            if (thisFrame.CameraReady && thisFrame.TrackingReady && thisFrame.percent_initialized > 0 && thisFrame.percent_initialized < 100)
             {
-                onSlamMappingInProgress.Invoke(1.0f);
+                onSlamMappingInProgress.Invoke(thisFrame.percent_initialized / 100f);
+            }
+
+            if (thisFrame.CameraReady && thisFrame.TrackingReady && thisFrame.percent_initialized >= 100 && _initializationState == SlamInitializationState.InitialMapping)
+            {
                 SetState(SlamInitializationState.Mapping);
             }
 
-
-            if (thisFrame.state == SlamInterop.TrackingStatus.State.TRACKING
-                && previousFrame.state == SlamInterop.TrackingStatus.State.INITIALIZING)
+            if (thisFrame.FilterReady && !previousFrame.FilterReady && _initializationState == SlamInitializationState.Mapping)
             {
                 SetState(SlamInitializationState.Finished);
                 onSlamMappingComplete.Invoke();
             }
 
-            if (thisFrame.state == SlamInterop.TrackingStatus.State.LIMITED_TRACKING
-                && thisFrame.reason == SlamInterop.TrackingStatus.Reason.LOST
-                && previousFrame.state == SlamInterop.TrackingStatus.State.TRACKING)
+            if (thisFrame.percent_initialized >= 100 && !thisFrame.TrackingReady && previousFrame.percent_initialized >= 100 && previousFrame.TrackingReady)
             {
                 onSlamTrackingLost.Invoke();
             }
 
-            if (thisFrame.state == SlamInterop.TrackingStatus.State.TRACKING
-                && previousFrame.state == SlamInterop.TrackingStatus.State.LIMITED_TRACKING
-                && previousFrame.reason == SlamInterop.TrackingStatus.Reason.LOST)
+            if (thisFrame.percent_initialized >= 100 && thisFrame.TrackingReady && previousFrame.percent_initialized >= 100 && !previousFrame.TrackingReady)
             {
                 onSlamTrackingRelocalized.Invoke();
             }
